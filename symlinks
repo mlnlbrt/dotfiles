@@ -3,3 +3,4 @@
 ~/.dotfiles/vim/.vimrc ~/.vimrc
 ~/.dotfiles/vim/.vim ~/.vim
 ~/.dotfiles/i3/i3status.conf ~/.i3status.conf
+~/.dotfiles/gitconfig ~/.gitconfig
