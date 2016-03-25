@@ -1,6 +1,6 @@
-DOTFILELIST 		:= 		\
-	.i3		 				\
-	.i3status.conf 			\
+DOTFILELIST			:=		\
+	.i3						\
+	.i3status.conf			\
 	.vimrc					\
 	.vim					\
 	.gitconfig				\
@@ -18,7 +18,7 @@ BACKUPDIR			:= $(PWD)/.backup/$(BACKUPNAME)
 PACKAGEDIR			:= $(PWD)
 
 TARGET_DOTFILES		:= $(addprefix $(HOMEDIR)/, $(DOTFILELIST))
-BACKUP_DOTFILES 	:= $(addprefix $(BACKUPDIR)/, $(DOTFILELIST))
+BACKUP_DOTFILES		:= $(addprefix $(BACKUPDIR)/, $(DOTFILELIST))
 PACKAGE_DOTFILES	:= $(addprefix $(PACKAGEDIR)/, $(DOTFILELIST))
 
 
