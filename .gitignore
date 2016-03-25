@@ -1,4 +1,9 @@
-vim/.vim/bundle
+# Ignore files in .vim directory, they contain files generated specifically for a given host
+.vim/*
+
+# Ignore orphans which can be introduced by Vim
 *.swp
+
+# Just in case :-)
 *.pyc
 
