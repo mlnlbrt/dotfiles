@@ -20,7 +20,7 @@ set autoindent
 set number
 set ruler
 
-# default indentation- 4 chars, spaces
+" default indentation- 4 chars, spaces
 set tabstop=4
 set shiftwidth=4
 set expandtab
