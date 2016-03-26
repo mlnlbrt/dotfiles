@@ -1,5 +1,5 @@
-
 XTerm*locale: true
+XTerm*metaSendsEscape: true
 XTerm*termName:xterm-256color
 XTerm*loginShell: true
 XTerm*borderWidth: 0
