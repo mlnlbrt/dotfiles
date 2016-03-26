@@ -26,7 +26,8 @@ PACKAGE_DOTFILES	:= $(addprefix $(PACKAGEDIR)/, $(DOTFILELIST))
 # TARGETS #
 ###########
 
-.PHONY: all install clean backup configure configurevim
+.PHONY: all install clean backup configure \
+	configurevim vimvundle vimpluginsinstall vimpluginscompile
 
 all: backup clean install configure
 
