@@ -29,7 +29,7 @@ PACKAGE_DOTFILES	:= $(addprefix $(PACKAGEDIR)/, $(DOTFILELIST))
 # TARGETS #
 ###########
 
-.PHONY: all install clean backup configure \
+.PHONY: all install clean backup cleanbackup configure \
 	configurevim vimvundle vimpluginsinstall vimpluginscompile
 
 all: backup clean install configure
@@ -43,6 +43,10 @@ clean:
 
 backup: $(BACKUP_DOTFILES)
 	@echo "Saved user's dotfiles backup to" $(BACKUPDIR)
+
+cleanbackup:
+	@rm -rf $(dir $(BACKUPDIR))*/
+	@echo "Cleaned backups"
 
 configure: configurevim
 
