@@ -1,9 +1,11 @@
 DOTFILELIST	:=		\
+	.bin			\
 	.i3				\
 	.i3status.conf	\
 	.vimrc			\
 	.vim			\
 	.gitconfig		\
+	.profile		\
 	.Xresources				
 
 
