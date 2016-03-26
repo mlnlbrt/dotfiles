@@ -17,10 +17,13 @@ filetype plugin indent on
 
 " various tweaks
 set autoindent
+set number
+set ruler
+
+# default indentation- 4 chars, spaces
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set number
 
 " highlighting
 syntax on
