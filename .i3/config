@@ -39,8 +39,6 @@ exec_always --no-startup-id xsetroot -solid $bgcolor
 # Load .Xresources
 exec --no-startup-id xrdb -merge ~/.Xresources
 
-# Notification handler
-# exec_always --no-startup-id dunst -conf ~/.config/i3/dunstrc
 
 ##########
 # Bindings

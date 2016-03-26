@@ -1,12 +1,13 @@
-DOTFILELIST	:=		\
-	.bin			\
-	.i3				\
-	.i3status.conf	\
-	.vimrc			\
-	.vim			\
-	.gitconfig		\
-	.profile		\
-	.Xresources				
+DOTFILELIST	:=				\
+	.bin					\
+	.i3						\
+	.i3status.conf			\
+	.vimrc					\
+	.vim					\
+	.gitconfig				\
+	.profile				\
+	.Xresources				\
+	.config/dunst/dunstrc
 
 
 #############
@@ -66,8 +67,8 @@ $(TARGET_DOTFILES):
 # How to make backup of the user's particular dotfiles
 # which are affected by the package
 $(BACKUP_DOTFILES):
-	@mkdir -p $(BACKUPDIR)
-	@cp -Lr $(addprefix $(HOMEDIR)/, $(notdir $@)) $@ 2> /dev/null || true
+	@mkdir -p $(dir $@)
+	@cp -Lr $(addprefix $(HOMEDIR)/, $(subst $(BACKUPDIR)/,,$@)) $@ 2> /dev/null || true
 
 # Obtain Vim's Vundle
 $(HOMEDIR)/.vim/bundle/Vundle.vim:
