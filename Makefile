@@ -7,7 +7,9 @@ DOTFILELIST	:=				\
 	.gitconfig				\
 	.profile				\
 	.Xresources				\
-	.config/dunst/dunstrc
+	.config/dunst/dunstrc	\
+	.icons					\
+	.themes
 
 
 #############
