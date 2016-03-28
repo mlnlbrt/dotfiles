@@ -47,16 +47,12 @@ installsymlinks: $(TARGET_DOTFILES)
 	@echo "Installed symlinks"
 
 installvimvundle: $(HOMEDIR)/.vim/bundle/Vundle.vim
-	@echo "Installed Vim Vundle"
 
 installvimplugins: $(HOMEDIR)/.vim/.pluginsinstalled
-	@echo "Installed Vim plugins"
 
 installgtktheme: $(HOMEDIR)/.themes/.themesinstalled
-	@echo "Installed gtk theme"
 
 installicons: $(HOMEDIR)/.icons/.iconsinstalled
-	@echo "Installed icons"
 
 clean:
 	@rm -rf $(TARGET_DOTFILES)
@@ -72,7 +68,6 @@ cleanbackup:
 configure: configurevim
 
 configurevim: compilevimplugins
-	@echo "Configured Vim"
 
 compilevimplugins: $(HOMEDIR)/.vim/.pluginscompiled
 
@@ -94,6 +89,7 @@ $(BACKUP_DOTFILES):
 # Obtain Vim's Vundle
 $(HOMEDIR)/.vim/bundle/Vundle.vim:
 	@git clone https://github.com/VundleVim/Vundle.vim.git $@
+	@echo "Installed Vim Vundle"
 
 # Install Vim's plugins
 # It's assumed that successful installation of Vim's plugins
@@ -101,18 +97,22 @@ $(HOMEDIR)/.vim/bundle/Vundle.vim:
 $(HOMEDIR)/.vim/.pluginsinstalled:
 	@vim +PluginInstall +qall
 	@touch $@
+	@echo "Installed Vim plugins"
 
 # Compile Vim's plugins
 $(HOMEDIR)/.vim/.pluginscompiled:
 	@python $(HOMEDIR)/.vim/bundle/YouCompleteMe/install.py
 	@touch $@
+	@echo "Configured Vim"
 
 # Install GTK theme
 $(HOMEDIR)/.themes/.themesinstalled:
 	@svn export https://github.com/snwh/paper-gtk-theme/trunk/Paper $(HOMEDIR)/.themes/Paper
 	@touch $@
+	@echo "Installed themes"
 
 # Install icons 
 $(HOMEDIR)/.icons/.iconsinstalled:
 	@svn export https://github.com/snwh/paper-icon-theme/trunk/Paper $(HOMEDIR)/.icons/Paper
 	@touch $@
+	@echo "Installed icons"
