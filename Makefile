@@ -1,15 +1,16 @@
-DOTFILELIST	:=				\
-	.bin					\
-	.i3						\
-	.i3status.conf			\
-	.vimrc					\
-	.vim					\
-	.gitconfig				\
-	.profile				\
-	.Xresources				\
-	.config/dunst/dunstrc	\
-	.icons					\
-	.themes
+DOTFILELIST	:=	\
+	.bin \
+	.i3	\
+	.i3status.conf \
+	.vimrc	\
+	.vim \
+	.gitconfig	\
+	.profile \
+	.Xresources	\
+	.config/dunst/dunstrc \
+	.icons \
+	.themes \
+	.gtkrc-2.0
 
 
 #############
@@ -31,14 +32,16 @@ PACKAGE_DOTFILES	:= $(addprefix $(PACKAGEDIR)/, $(DOTFILELIST))
 # TARGETS #
 ###########
 
-.PHONY: all	install clean backup configure							\
-	installsymlinks installvimvundle installvimplugins				\
-	cleanbackup														\
+.PHONY: all install clean backup configure \
+	installsymlinks installvimvundle installvimplugins \
+	cleanbackup	\
 	configurevim configurevimplugins
 
 all: backup clean install configure
 
-install: installsymlinks installvimvundle installvimplugins
+install: installsymlinks \
+	installvimvundle installvimplugins \
+	installgtktheme installicons
 
 installsymlinks: $(TARGET_DOTFILES)
 	@echo "Installed symlinks"
@@ -48,6 +51,12 @@ installvimvundle: $(HOMEDIR)/.vim/bundle/Vundle.vim
 
 installvimplugins: $(HOMEDIR)/.vim/.pluginsinstalled
 	@echo "Installed Vim plugins"
+
+installgtktheme: $(HOMEDIR)/.themes/.themesinstalled
+	@echo "Installed gtk theme"
+
+installicons: $(HOMEDIR)/.icons/.iconsinstalled
+	@echo "Installed icons"
 
 clean:
 	@rm -rf $(TARGET_DOTFILES)
@@ -94,8 +103,16 @@ $(HOMEDIR)/.vim/.pluginsinstalled:
 	@touch $@
 
 # Compile Vim's plugins
-# It's assumed that successful compilation of Vim's plugins
-# is confirmed by the dotfile created below
 $(HOMEDIR)/.vim/.pluginscompiled:
 	@python $(HOMEDIR)/.vim/bundle/YouCompleteMe/install.py
+	@touch $@
+
+# Install GTK theme
+$(HOMEDIR)/.themes/.themesinstalled:
+	@svn export https://github.com/snwh/paper-gtk-theme/trunk/Paper $(HOMEDIR)/.themes/Paper
+	@touch $@
+
+# Install icons 
+$(HOMEDIR)/.icons/.iconsinstalled:
+	@svn export https://github.com/snwh/paper-icon-theme/trunk/Paper $(HOMEDIR)/.icons/Paper
 	@touch $@

@@ -30,3 +30,5 @@ XTerm*color13:	#6c71c4
 XTerm*color14:	#93a1a1
 XTerm*color15:	#fdf6e3
 
+! cursor theme
+Xcursor.theme: Paper
