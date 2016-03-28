@@ -31,13 +31,23 @@ PACKAGE_DOTFILES	:= $(addprefix $(PACKAGEDIR)/, $(DOTFILELIST))
 # TARGETS #
 ###########
 
-.PHONY: all install clean backup cleanbackup configure \
-	configurevim vimvundle vimpluginsinstall vimpluginscompile
+.PHONY: all	install clean backup configure							\
+	installsymlinks installvimvundle installvimplugins				\
+	cleanbackup														\
+	configurevim configurevimplugins
 
 all: backup clean install configure
 
-install: $(TARGET_DOTFILES)
-	@echo "Installed dotfiles"
+install: installsymlinks installvimvundle installvimplugins
+
+installsymlinks: $(TARGET_DOTFILES)
+	@echo "Installed symlinks"
+
+installvimvundle: $(HOMEDIR)/.vim/bundle/Vundle.vim
+	@echo "Installed Vim Vundle"
+
+installvimplugins: $(HOMEDIR)/.vim/.pluginsinstalled
+	@echo "Installed Vim plugins"
 
 clean:
 	@rm -rf $(TARGET_DOTFILES)
@@ -52,14 +62,10 @@ cleanbackup:
 
 configure: configurevim
 
-configurevim: vimvundle vimpluginsinstall vimpluginscompile
+configurevim: compilevimplugins
 	@echo "Configured Vim"
 
-vimvundle: $(HOMEDIR)/.vim/bundle/Vundle.vim
-
-vimpluginsinstall: $(HOMEDIR)/.vim/.pluginsinstalled
-
-vimpluginscompile: $(HOMEDIR)/.vim/.pluginscompiled
+compilevimplugins: $(HOMEDIR)/.vim/.pluginscompiled
 
 
 #########
