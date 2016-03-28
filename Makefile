@@ -78,7 +78,7 @@ compilevimplugins: $(HOMEDIR)/.vim/.pluginscompiled
 
 # How to make symlinks in the user's /home directory
 $(TARGET_DOTFILES):
-	@ln -s $(addprefix $(PACKAGEDIR)/, $(notdir $@)) $@
+	@ln -s $(addprefix $(PACKAGEDIR)/, $(subst $(HOMEDIR)/,,$@)) $@
 
 # How to make backup of the user's particular dotfiles
 # which are affected by the package
