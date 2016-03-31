@@ -37,13 +37,9 @@ THEMES_GITADDR	:= https://github.com/snwh/paper-gtk-theme/trunk/Paper
 
 all: backup clean install configure
 
-install: \
-	installvimvundle installvimplugins \
+install: installvimvundle installvimplugins \
 	installgtktheme installicons \
 	installsymlinks
-
-installsymlinks: $(TARGET_DOTFILES)
-	@echo "Installed symlinks"
 
 installvimvundle: $(PACKAGEDIR)/.vim/bundle/Vundle.vim
 
@@ -52,6 +48,9 @@ installvimplugins: $(PACKAGEDIR)/.vim/.pluginsinstalled
 installgtktheme: $(PACKAGEDIR)/.themes/.themesinstalled
 
 installicons: $(PACKAGEDIR)/.icons/.iconsinstalled
+
+installsymlinks: $(TARGET_DOTFILES)
+	@echo "Installed symlinks"
 
 clean:
 	@rm -rf $(TARGET_DOTFILES)
@@ -77,7 +76,7 @@ compilevimplugins: $(PACKAGEDIR)/.vim/.pluginscompiled
 
 # How to make symlinks in the user's /home directory
 $(TARGET_DOTFILES):
-	@mkdir -p $(dir $(subst $(HOMEDIR)/,,$@)))
+	@mkdir -p $(dir $(subst $(HOMEDIR)/,,$@))
 	@ln -s $(addprefix $(PACKAGEDIR)/, $(subst $(HOMEDIR)/,,$@)) $@
 
 # How to make backup of the user's particular dotfiles
