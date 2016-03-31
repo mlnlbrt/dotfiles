@@ -1,11 +1,11 @@
-DOTFILES :=
-DOTFILES += .bin
-DOTFILES += .i3 .i3status.conf
-DOTFILES += .vimrc .vim
-DOTFILES += .gitconfig
-DOTFILES += .profile .Xresources
-DOTFILES += .icons .themes .gtkrc-2.0
-DOTFILES += .config/dunst/dunstrc
+DOTFILELIST :=
+DOTFILELIST += .bin
+DOTFILELIST += .i3 .i3status.conf
+DOTFILELIST += .vimrc .vim
+DOTFILELIST += .gitconfig
+DOTFILELIST += .profile .Xresources
+DOTFILELIST += .icons .themes .gtkrc-2.0
+DOTFILELIST += .config/dunst/dunstrc
 
 
 #############
@@ -22,6 +22,9 @@ TARGET_DOTFILES		:= $(addprefix $(HOMEDIR)/, $(DOTFILELIST))
 BACKUP_DOTFILES		:= $(addprefix $(BACKUPDIR)/, $(DOTFILELIST))
 PACKAGE_DOTFILES	:= $(addprefix $(PACKAGEDIR)/, $(DOTFILELIST))
 
+ICONS_GITADDR	:= https://github.com/snwh/paper-icon-theme/trunk/Paper 
+THEMES_GITADDR	:= https://github.com/snwh/paper-gtk-theme/trunk/Paper 
+
 
 ###########
 # TARGETS #
@@ -29,25 +32,26 @@ PACKAGE_DOTFILES	:= $(addprefix $(PACKAGEDIR)/, $(DOTFILELIST))
 
 .PHONY: all install clean backup configure \
 	installsymlinks installvimvundle installvimplugins \
-	cleanbackup	\
+	cleanbackup \
 	configurevim configurevimplugins
 
 all: backup clean install configure
 
-install: installsymlinks \
+install: \
 	installvimvundle installvimplugins \
-	installgtktheme installicons
+	installgtktheme installicons \
+	installsymlinks
 
 installsymlinks: $(TARGET_DOTFILES)
 	@echo "Installed symlinks"
 
-installvimvundle: $(HOMEDIR)/.vim/bundle/Vundle.vim
+installvimvundle: $(PACKAGEDIR)/.vim/bundle/Vundle.vim
 
-installvimplugins: $(HOMEDIR)/.vim/.pluginsinstalled
+installvimplugins: $(PACKAGEDIR)/.vim/.pluginsinstalled
 
-installgtktheme: $(HOMEDIR)/.themes/.themesinstalled
+installgtktheme: $(PACKAGEDIR)/.themes/.themesinstalled
 
-installicons: $(HOMEDIR)/.icons/.iconsinstalled
+installicons: $(PACKAGEDIR)/.icons/.iconsinstalled
 
 clean:
 	@rm -rf $(TARGET_DOTFILES)
@@ -64,7 +68,7 @@ configure: configurevim
 
 configurevim: compilevimplugins
 
-compilevimplugins: $(HOMEDIR)/.vim/.pluginscompiled
+compilevimplugins: $(PACKAGEDIR)/.vim/.pluginscompiled
 
 
 #########
@@ -82,32 +86,32 @@ $(BACKUP_DOTFILES):
 	@cp -Lr $(addprefix $(HOMEDIR)/, $(subst $(BACKUPDIR)/,,$@)) $@ 2> /dev/null || true
 
 # Obtain Vim's Vundle
-$(HOMEDIR)/.vim/bundle/Vundle.vim:
+$(PACKAGEDIR)/.vim/bundle/Vundle.vim:
 	@git clone https://github.com/VundleVim/Vundle.vim.git $@
 	@echo "Installed Vim Vundle"
 
 # Install Vim's plugins
 # It's assumed that successful installation of Vim's plugins
 # is confirmed by the dotfile created below
-$(HOMEDIR)/.vim/.pluginsinstalled:
+$(PACKAGEDIR)/.vim/.pluginsinstalled:
 	@vim +PluginInstall +qall
 	@touch $@
 	@echo "Installed Vim plugins"
 
 # Compile Vim's plugins
-$(HOMEDIR)/.vim/.pluginscompiled:
-	@python $(HOMEDIR)/.vim/bundle/YouCompleteMe/install.py
+$(PACKAGEDIR)/.vim/.pluginscompiled:
+	@python $(PACKAGEDIR)/.vim/bundle/YouCompleteMe/install.py
 	@touch $@
 	@echo "Configured Vim"
 
 # Install GTK theme
-$(HOMEDIR)/.themes/.themesinstalled:
-	@svn export https://github.com/snwh/paper-gtk-theme/trunk/Paper $(HOMEDIR)/.themes/Paper
+$(PACKAGEDIR)/.themes/.themesinstalled:
+	@svn export $(THEMES_GITADDR) $(PACKAGEDIR)/.themes/Paper
 	@touch $@
 	@echo "Installed themes"
 
 # Install icons 
-$(HOMEDIR)/.icons/.iconsinstalled:
-	@svn export https://github.com/snwh/paper-icon-theme/trunk/Paper $(HOMEDIR)/.icons/Paper
+$(PACKAGEDIR)/.icons/.iconsinstalled:
+	@svn export $(ICONS_GITADDR) $(PACKAGEDIR)/.icons/Paper
 	@touch $@
 	@echo "Installed icons"
