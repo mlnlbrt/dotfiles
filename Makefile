@@ -37,20 +37,20 @@ THEMES_GITADDR	:= https://github.com/snwh/paper-gtk-theme/trunk/Paper
 
 all: backup clean install configure
 
-install: installvimvundle installvimplugins \
+install: installsymlinks \
+	installvimvundle installvimplugins \
 	installgtktheme installicons \
-	installsymlinks
-
-installvimvundle: $(PACKAGEDIR)/.vim/bundle/Vundle.vim
-
-installvimplugins: $(PACKAGEDIR)/.vim/.pluginsinstalled
-
-installgtktheme: $(PACKAGEDIR)/.themes/.themesinstalled
-
-installicons: $(PACKAGEDIR)/.icons/.iconsinstalled
 
 installsymlinks: $(TARGET_DOTFILES)
 	@echo "Installed symlinks"
+
+installvimvundle: $(HOMEDIR)/.vim/bundle/Vundle.vim
+
+installvimplugins: $(HOMEDIR)/.vim/.pluginsinstalled
+
+installgtktheme: $(HOMEDIR)/.themes/.themesinstalled
+
+installicons: $(HOMEDIR)/.icons/.iconsinstalled
 
 clean:
 	@rm -rf $(TARGET_DOTFILES)
@@ -67,7 +67,7 @@ configure: configurevim
 
 configurevim: compilevimplugins
 
-compilevimplugins: $(PACKAGEDIR)/.vim/.pluginscompiled
+compilevimplugins: $(HOMEDIR)/.vim/.pluginscompiled
 
 
 #########
@@ -86,32 +86,32 @@ $(BACKUP_DOTFILES):
 	@cp -Lr $(addprefix $(HOMEDIR)/, $(subst $(BACKUPDIR)/,,$@)) $@ 2> /dev/null || true
 
 # Obtain Vim's Vundle
-$(PACKAGEDIR)/.vim/bundle/Vundle.vim:
+$(HOMEDIR)/.vim/bundle/Vundle.vim:
 	@git clone https://github.com/VundleVim/Vundle.vim.git $@
 	@echo "Installed Vim Vundle"
 
 # Install Vim's plugins
 # It's assumed that successful installation of Vim's plugins
 # is confirmed by the dotfile created below
-$(PACKAGEDIR)/.vim/.pluginsinstalled:
+$(HOMEDIR)/.vim/.pluginsinstalled:
 	@vim +PluginInstall +qall
 	@touch $@
 	@echo "Installed Vim plugins"
 
 # Compile Vim's plugins
-$(PACKAGEDIR)/.vim/.pluginscompiled:
-	@python $(PACKAGEDIR)/.vim/bundle/YouCompleteMe/install.py
+$(HOMEDIR)/.vim/.pluginscompiled:
+	@python $(HOMEDIR)/.vim/bundle/YouCompleteMe/install.py
 	@touch $@
 	@echo "Configured Vim"
 
 # Install GTK theme
-$(PACKAGEDIR)/.themes/.themesinstalled:
-	@svn export $(THEMES_GITADDR) $(PACKAGEDIR)/.themes/Paper
+$(HOMEDIR)/.themes/.themesinstalled:
+	@svn export $(THEMES_GITADDR) $(HOMEDIR)/.themes/Paper
 	@touch $@
 	@echo "Installed themes"
 
 # Install icons 
-$(PACKAGEDIR)/.icons/.iconsinstalled:
-	@svn export $(ICONS_GITADDR) $(PACKAGEDIR)/.icons/Paper
+$(HOMEDIR)/.icons/.iconsinstalled:
+	@svn export $(ICONS_GITADDR) $(HOMEDIR)/.icons/Paper
 	@touch $@
 	@echo "Installed icons"
