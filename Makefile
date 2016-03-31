@@ -1,16 +1,11 @@
-DOTFILELIST	:=	\
-	.bin \
-	.i3	\
-	.i3status.conf \
-	.vimrc	\
-	.vim \
-	.gitconfig	\
-	.profile \
-	.Xresources	\
-	.config/dunst/dunstrc \
-	.icons \
-	.themes \
-	.gtkrc-2.0
+DOTFILES :=
+DOTFILES += .bin
+DOTFILES += .i3 .i3status.conf
+DOTFILES += .vimrc .vim
+DOTFILES += .gitconfig
+DOTFILES += .profile .Xresources
+DOTFILES += .icons .themes .gtkrc-2.0
+DOTFILES += .config/dunst/dunstrc
 
 
 #############
