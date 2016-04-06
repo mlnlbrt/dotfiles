@@ -2,11 +2,12 @@ set nocompatible
 set backspace=indent,eol,start
 filetype off
 
-" YCM
+" Vundle plugins
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
+Plugin 'taglist.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'wesleyche/Trinity'
@@ -39,6 +40,9 @@ let Tlist_File_Fold_Auto_Close = 1
 " ycm tweaks
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
+" eclim support for ycm
+let g:EclimCompletionMethod = 'omnifunc'
+
 " shortcuts
 nnoremap <F2> :set tabstop=2 shiftwidth=2 expandtab
 nnoremap <F3> :set tabstop=4 shiftwidth=4 expandtab
@@ -51,8 +55,10 @@ set showmode
 function TabToggle()
     if &expandtab
         set noexpandtab
+        echo "Hard tabs"
     else
         set expandtab
+        echo "Soft tabs"
     endif
 endfunction
 nmap <F5> mz:execute TabToggle()<CR>'z
