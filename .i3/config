@@ -21,7 +21,7 @@ font pango:DejaVu Sans Mono Book 11
 popup_during_fullscreen smart
 
 new_window pixel 4
-new_float pixel 4
+new_float normal 4 
 
 ###########
 # Autostart 
