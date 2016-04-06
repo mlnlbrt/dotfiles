@@ -27,5 +27,10 @@ export PATH=$PATH:$HOME/.bin
 # Add /opt's exports
 source /opt/exports 2> /dev/null || true
 
-# set default editor
+# Set default editor
 export EDITOR=vim
+
+# Maven related exports
+export JAVA_HOME=/opt/jdk1.8.0_77
+export M2_HOME=/usr/share/maven
+export MAVEN_OPTS="-Xms256m -Xmx512m"
