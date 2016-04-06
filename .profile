@@ -30,7 +30,11 @@ source /opt/exports 2> /dev/null || true
 # Set default editor
 export EDITOR=vim
 
+# Add Eclipse to path and force it to use GTK2
+export PATH=$PATH:/opt/eclipse
+export SWT_GTK3=0
+
 # Maven related exports
-export JAVA_HOME=/opt/jdk1.8.0_77
+export JAVA_HOME=/opt/jdk
 export M2_HOME=/usr/share/maven
 export MAVEN_OPTS="-Xms256m -Xmx512m"
