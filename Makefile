@@ -6,6 +6,7 @@ DOTFILELIST += .gitconfig
 DOTFILELIST += .profile .Xresources
 DOTFILELIST += .icons .themes .gtkrc-2.0
 DOTFILELIST += .config/dunst/dunstrc
+DOTFILELIST += .ncmpcpp/config
 
 
 #############
