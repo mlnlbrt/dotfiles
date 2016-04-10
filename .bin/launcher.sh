@@ -10,9 +10,9 @@ case `basename $0` in
 	s_mutt)
 		$TERM -name MUTT -title MUTT -e bash -c "mutt"
 		;;
-    s_ncmpcpp)
-        $TERM -name NCMPCPP -title NCMPCPP -e bash -c "ncmpcpp"
-        ;;
+	s_ncmpcpp)
+		$TERM -name NCMPCPP -title NCMPCPP -e bash -c "ncmpcpp"
+		;;
 	s_mc)
 		$TERM -name MC -title MC -e bash -c "mc"
 		;;
