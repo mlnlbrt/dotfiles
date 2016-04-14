@@ -36,7 +36,7 @@ THEMES_GITADDR	:= https://github.com/snwh/paper-gtk-theme/trunk/Paper
 	cleanbackup \
 	configurevim configurevimplugins
 
-all: backup clean install configure
+all: backup clean gitupdate install configure
 
 install: installsymlinks \
 	installvimvundle installvimplugins \
@@ -64,9 +64,9 @@ cleanbackup:
 	@rm -rf $(dir $(BACKUPDIR))*/
 	@echo "Cleaned backups"
 
-update: clean reset install
+update: clean gitupdate install
 
-reset:
+gitupdate:
 	@git fetch origin
 	@git reset --hard origin/master
 
