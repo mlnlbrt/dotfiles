@@ -5,6 +5,7 @@ DOTFILELIST += .vimrc .vim
 DOTFILELIST += .gitconfig
 DOTFILELIST += .profile .Xresources
 DOTFILELIST += .icons .themes .gtkrc-2.0
+DOTFILELIST += .config/gtk-3.0/settings.ini
 DOTFILELIST += .config/dunst/dunstrc
 DOTFILELIST += .ncmpcpp/config
 DOTFILELIST += .pulse/client.conf .pulse/daemon.conf .pulse/default.pa
