@@ -20,6 +20,9 @@ font pango:DejaVu Sans Mono Book 11
 # Display popups if it's from same window
 popup_during_fullscreen smart
 
+# Enable switching between two workspaces using one shortcut
+workspace_auto_back_and_forth yes
+
 new_window pixel 4
 new_float normal 4 
 
