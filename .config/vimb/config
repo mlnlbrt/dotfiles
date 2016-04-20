@@ -1,0 +1,33 @@
+# Homepage
+set home-page=https://encrypted.google.com
+
+# Downloads
+set download-path=~/downloads
+
+# UI
+set smooth-scrolling=on
+
+# Status bars
+set input-autohide=true
+set input-bg-normal=#002b36
+set input-fg-normal=#839496
+set status-color-bg=#002b36
+set status-color-fg=#839496
+set status-ssl-color-bg=#002b36
+set status-ssl-color-fg=#839496
+
+# Webkit
+set html5-database=on
+set html5-local-storage=on
+set media-playback-requires-user-gesture=true
+
+# JS
+set javascript-can-access-clipboard=off
+set javascript-can-open-windows-automatically=off
+
+# Speed up
+set proxy=off
+
+# Search engines
+shortcut-default go
+shortcut-add go=https://encrypted.google.com/search?q=$0

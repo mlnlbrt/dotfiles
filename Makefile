@@ -9,6 +9,7 @@ DOTFILELIST += .config/gtk-3.0/settings.ini
 DOTFILELIST += .config/dunst/dunstrc
 DOTFILELIST += .ncmpcpp/config
 DOTFILELIST += .pulse/client.conf .pulse/daemon.conf .pulse/default.pa
+DOTFILELIST += .config/vimb/config
 
 
 #############
