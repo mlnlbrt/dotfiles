@@ -10,6 +10,7 @@ DOTFILELIST += .config/dunst/dunstrc
 DOTFILELIST += .ncmpcpp/config
 DOTFILELIST += .pulse/client.conf .pulse/daemon.conf .pulse/default.pa
 DOTFILELIST += .config/vimb/config
+DOTFILELIST += .config/firejail
 
 
 #############

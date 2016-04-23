@@ -10,6 +10,9 @@ case `basename $0` in
 	s_mutt)
 		$TERM -name MUTT -title MUTT -e bash -c "mutt"
 		;;
+	s_vimb)
+		firejail vimb
+		;;
 	s_ncmpcpp)
 		$TERM -name NCMPCPP -title NCMPCPP -e bash -c "ncmpcpp"
 		;;
