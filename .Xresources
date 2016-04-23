@@ -1,7 +1,17 @@
+!!!!!!!!!!!!!!
+! Xft settings
+!!!!!!!!!!!!!!
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
+
 !!!!!!!!!!!!!!!!!!!!!
 ! URxvt configuration
 !!!!!!!!!!!!!!!!!!!!!
 URxvt.font: xft:DejavuSansMono:size=11
+URxvt.letterSpace: -1
 URxvt*scrollBar: false
 
 ! terminal colours
