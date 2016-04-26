@@ -11,7 +11,7 @@ case `basename $0` in
 		$TERM -name MUTT -title MUTT -e bash -c "mutt"
 		;;
 	s_vimb)
-		firejail vimb
+		firejail vimb $1
 		;;
 	s_ncmpcpp)
 		$TERM -name NCMPCPP -title NCMPCPP -e bash -c "ncmpcpp"
