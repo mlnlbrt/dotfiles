@@ -27,8 +27,9 @@ export PATH=$PATH:$HOME/.bin
 # Add /opt's exports
 source /opt/exports 2> /dev/null || true
 
-# Set default editor
+# Set default editor and browser
 export EDITOR=vim
+export BROWSER=vimb
 
 # Force Eclipse to use GTK2
 export SWT_GTK3=0
