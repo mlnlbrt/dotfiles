@@ -37,7 +37,7 @@ URxvt*color15:	#fdf6e3
 
 ! clickable links
 URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.url-launcher: firejail vimb
 URxvt.matcher.button: 1
 
 
