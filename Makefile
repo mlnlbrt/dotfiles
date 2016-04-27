@@ -2,6 +2,7 @@ DOTFILELIST :=
 DOTFILELIST += .bin
 DOTFILELIST += .i3 .i3status.conf
 DOTFILELIST += .vimrc .vim
+DOTFILELIST += .local/share/applications/mimeapps.list
 DOTFILELIST += .gitconfig
 DOTFILELIST += .profile .Xresources
 DOTFILELIST += .icons .themes .gtkrc-2.0

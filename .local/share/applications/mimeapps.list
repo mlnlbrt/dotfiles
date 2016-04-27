@@ -1,0 +1,25 @@
+[Default Applications]
+application/pdf=atril.desktop
+image/jpeg=viewnior.desktop
+image/jpeg2000=viewnior.desktop
+image/jpg=viewnior.desktop
+image/jpx=viewnior.desktop
+image/gif=viewnior.desktop
+image/png=viewnior.desktop
+image/bmp=viewnior.desktop
+text/english=vim.desktop
+text/html=vim.desktop
+text/plain=vim.desktop
+text/x-c=vim.desktop
+text/x-c++=vim.desktop
+text/x-c++hdr=vim.desktop
+text/x-c++src=vim.desktop
+text/x-chdr=vim.desktop
+text/x-csrc=vim.desktop
+text/x-java=vim.desktop
+text/x-makefile=vim.desktop
+text/x-moc=vim.desktop
+text/x-pascal=vim.desktop
+text/x-tcl=vim.desktop
+text/x-tex=vim.desktop
+text/xml=vim.desktop
