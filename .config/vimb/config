@@ -25,9 +25,14 @@ set media-playback-requires-user-gesture=true
 set javascript-can-access-clipboard=off
 set javascript-can-open-windows-automatically=off
 
+# Cookies
+set cookie-accept=never
+
 # Speed up
 set proxy=off
 
 # Search engines
 shortcut-default go
 shortcut-add go=https://encrypted.google.com/search?q=$0
+shortcut-add te=https://translate.google.com/#pl/en/$0
+shortcut-add tp=https://translate.google.com/#en/pl/$0
