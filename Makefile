@@ -5,6 +5,7 @@ DOTFILELIST += .vimrc .vim
 DOTFILELIST += .local/share/applications/mimeapps.list
 DOTFILELIST += .gitconfig
 DOTFILELIST += .profile .Xresources
+DOTFILELIST += .fonts.conf
 DOTFILELIST += .icons .themes .gtkrc-2.0
 DOTFILELIST += .config/gtk-3.0/settings.ini
 DOTFILELIST += .config/dunst/dunstrc
