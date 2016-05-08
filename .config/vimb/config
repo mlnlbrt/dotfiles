@@ -1,11 +1,12 @@
 # Homepage
-set home-page=https://encrypted.google.com
+set home-page=about:blank
 
 # Downloads
 set download-path=~/downloads
 
 # UI
 set smooth-scrolling=on
+set hint-timeout=0
 
 # Status bars
 set input-autohide=true
