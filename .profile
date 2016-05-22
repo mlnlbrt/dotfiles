@@ -29,7 +29,7 @@ source /opt/exports 2> /dev/null || true
 
 # Set default editor and browser
 export EDITOR=vim
-export BROWSER=vimb
+export BROWSER=chromium
 
 # Force Eclipse to use GTK2
 export SWT_GTK3=0
