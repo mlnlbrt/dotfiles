@@ -12,6 +12,9 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'wesleyche/Trinity'
 Plugin 'bling/vim-bufferline'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'rking/ag.vim'
+Plugin 'simplyzhao/cscope_maps.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -21,10 +24,10 @@ set autoindent
 set number
 set ruler
 
-" default indentation- 4 chars, spaces
+" default indentation - 4 chars, hardtabs
 set tabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 
 " highlighting
 syntax on
@@ -63,8 +66,13 @@ function TabToggle()
 endfunction
 nmap <F5> mz:execute TabToggle()<CR>'z
 
-" trinity shortcuts
+" Open CtrlP
+nmap <F1> :CtrlPMixed .<CR>
 " Open and close the Taglist separately
-nmap <F9> :TrinityToggleTagList
+nmap <F9> :TrinityToggleTagList<CR>
 " Open and close the NERD Tree separately
-nmap <F10> :TrinityToggleNERDTree
+nmap <F10> :TrinityToggleNERDTree<CR>
+
+" Set PWD as window title
+set title
+set titlestring+=\ pwd:\ %{substitute(getcwd(),\ $HOME,\ '~',\ '')}
