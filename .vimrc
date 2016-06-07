@@ -43,6 +43,12 @@ let Tlist_File_Fold_Auto_Close = 1
 " ycm tweaks
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
+" CtrlP tweaks
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 40
+let g:ctrlp_by_filename = 1
+let g:ctrlp_switch_buffer = 'E'
+
 " eclim support for ycm
 let g:EclimCompletionMethod = 'omnifunc'
 
@@ -66,8 +72,8 @@ function TabToggle()
 endfunction
 nmap <F5> mz:execute TabToggle()<CR>'z
 
-" Open CtrlP
-nmap <F1> :CtrlPMixed .<CR>
+" Open CtrlP in Mixed mode
+nmap <F1> :CtrlPMixed<CR>
 " Open and close the Taglist separately
 nmap <F9> :TrinityToggleTagList<CR>
 " Open and close the NERD Tree separately
