@@ -10,7 +10,7 @@ Xft.hintstyle:  hintfull
 !!!!!!!!!!!!!!!!!!!!!
 ! URxvt configuration
 !!!!!!!!!!!!!!!!!!!!!
-URxvt.font: xft:DejavuSansMono:size=11
+URxvt.font: xft:DejavuSansMono:size=10
 URxvt*scrollBar: false
 
 ! terminal colours
@@ -52,7 +52,7 @@ XTerm*SaveLines: 5000
 XTerm*visualbell: true
 XTerm*bellIsUrgent: true
 XTerm*faceName: DejaVu Sans Mono Book
-XTerm*faceSize: 11
+XTerm*faceSize: 10
 
 ! terminal colours
 XTerm*foreground:#839496
