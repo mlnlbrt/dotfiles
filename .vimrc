@@ -15,6 +15,7 @@ Plugin 'bling/vim-bufferline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'simplyzhao/cscope_maps.vim'
+Plugin 'hari-rangarajan/CCTree'
 
 call vundle#end()
 filetype plugin indent on
@@ -24,15 +25,19 @@ set autoindent
 set number
 set ruler
 
-" default indentation - 4 chars, hardtabs
+" default indentation - 4 chars, softtabs
 set tabstop=4
 set shiftwidth=4
-set noexpandtab
+set expandtab
 
 " highlighting
 syntax on
 set hlsearch
 set background=dark
+
+" show tabs and trailing spaces
+set list
+set listchars=tab:>\ ,trail:-
 
 " taglist tweaks
 let Tlist_Auto_Update = 1
@@ -79,6 +84,6 @@ nmap <F9> :TrinityToggleTagList<CR>
 " Open and close the NERD Tree separately
 nmap <F10> :TrinityToggleNERDTree<CR>
 
-" Set PWD as window title
+" Set CWD as window title
 set title
 set titlestring+=\ pwd:\ %{substitute(getcwd(),\ $HOME,\ '~',\ '')}
