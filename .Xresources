@@ -12,6 +12,12 @@ Xft.hintstyle:  hintfull
 !!!!!!!!!!!!!!!!!!!!!
 URxvt.font: xft:DejavuSansMono:size=10
 URxvt*scrollBar: false
+URxvt*saveLines: 65535
+
+! prevent automatic scrolling
+URxvt*scrollWithBuffer: false
+URxvt*scrollTtyKeypress: true
+URxvt*scrollTtyOutput: false
 
 ! terminal colours
 URxvt*foreground:#839496
@@ -48,7 +54,7 @@ XTerm*metaSendsEscape: true
 XTerm*termName:xterm-256color
 XTerm*loginShell: true
 XTerm*borderWidth: 0
-XTerm*SaveLines: 5000
+XTerm*SaveLines: 65535
 XTerm*visualbell: true
 XTerm*bellIsUrgent: true
 XTerm*faceName: DejaVu Sans Mono Book
