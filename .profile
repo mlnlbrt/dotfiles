@@ -37,3 +37,9 @@ export SWT_GTK3=0
 # Maven related exports
 export M2_HOME=/usr/share/maven
 export MAVEN_OPTS="-Xms256m -Xmx512m"
+
+# Function and its alias to set a window title of a terminal
+set_window_title() {
+	echo -ne "\e]0;$1\007"
+}
+alias swt=set_window_title
