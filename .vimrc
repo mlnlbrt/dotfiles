@@ -36,10 +36,14 @@ set shiftwidth=4
 set expandtab
 
 " highlighting
-set t_Co=256
 syntax on
 set hlsearch
 set background=dark
+
+" vim-indent-guides tweaks
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8
 
 " show tabs and trailing spaces
 set list
