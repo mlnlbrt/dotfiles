@@ -16,6 +16,11 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'simplyzhao/cscope_maps.vim'
 Plugin 'hari-rangarajan/CCTree'
+Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'Raimondi/delimitMate'
+Plugin 'scrooloose/syntastic'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 call vundle#end()
 filetype plugin indent on
@@ -31,6 +36,7 @@ set shiftwidth=4
 set expandtab
 
 " highlighting
+set t_Co=256
 syntax on
 set hlsearch
 set background=dark
@@ -83,6 +89,9 @@ nmap <F1> :CtrlPMixed<CR>
 nmap <F9> :TrinityToggleTagList<CR>
 " Open and close the NERD Tree separately
 nmap <F10> :TrinityToggleNERDTree<CR>
+
+" Enable indentation highlighting
+nmap <F6> <Leader>ig
 
 " Set CWD as window title
 set title
