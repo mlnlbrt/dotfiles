@@ -13,6 +13,7 @@ DOTFILELIST += .ncmpcpp/config
 DOTFILELIST += .pulse/client.conf .pulse/daemon.conf .pulse/default.pa
 DOTFILELIST += .config/vimb/config
 DOTFILELIST += .config/firejail
+DOTFILELIST += .ssh/config
 
 
 #############
