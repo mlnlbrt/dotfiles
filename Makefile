@@ -7,12 +7,13 @@ DOTFILELIST += .gitconfig
 DOTFILELIST += .profile .Xresources
 DOTFILELIST += .fonts.conf
 DOTFILELIST += .icons .themes .gtkrc-2.0
-DOTFILELIST += .config/gtk-3.0/settings.ini
-DOTFILELIST += .config/dunst/dunstrc
-DOTFILELIST += .ncmpcpp/config
 DOTFILELIST += .pulse/client.conf .pulse/daemon.conf .pulse/default.pa
-DOTFILELIST += .config/vimb/config
+DOTFILELIST += .config/dunst/dunstrc
 DOTFILELIST += .config/firejail
+DOTFILELIST += .config/gtk-3.0/settings.ini
+DOTFILELIST += .config/mpv/mpv.conf
+DOTFILELIST += .config/vimb/config
+DOTFILELIST += .ncmpcpp/config
 DOTFILELIST += .ssh/config
 
 
