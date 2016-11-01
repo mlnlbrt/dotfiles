@@ -53,6 +53,7 @@ backup: $(BACKUP_DOTFILES)
 
 clean:
 	@rm -rf $(TARGET_DOTFILES)
+	@rmdir -p $(filter-out $(HOMEDIR)/, $(dir $(TARGET_DOTFILES))) 2> /dev/null || true
 
 update: clean gitupdate install
 
