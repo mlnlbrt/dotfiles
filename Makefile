@@ -31,46 +31,28 @@ TARGET_DOTFILES		:= $(addprefix $(HOMEDIR)/, $(DOTFILELIST))
 BACKUP_DOTFILES		:= $(addprefix $(BACKUPDIR)/, $(DOTFILELIST))
 PACKAGE_DOTFILES	:= $(addprefix $(PACKAGEDIR)/, $(DOTFILELIST))
 
-ICONS_GITADDR	:= https://github.com/snwh/paper-icon-theme/trunk/Paper 
-THEMES_GITADDR	:= https://github.com/snwh/paper-gtk-theme/trunk/Paper 
+ICONS_REMOTEADDR	:= https://github.com/snwh/paper-icon-theme/trunk/Paper
+THEMES_REMOTEADDR	:= https://github.com/snwh/paper-gtk-theme/trunk/Paper
 
 
 ###########
 # TARGETS #
 ###########
 
-.PHONY: all install clean backup update reset configure \
-	installsymlinks installvimvundle installvimplugins \
-	cleanbackup \
-	configurevim configurevimplugins
+.PHONY: \
+	all backup clean update gitupdate install \
+	installsymlinks \
+	installvimplugins \
+	installgtktheme \
+	installicons
 
-all: backup clean gitupdate install configure
+all: backup clean install
 
-install: installsymlinks \
-	installvimvundle installvimplugins \
-	installgtktheme installicons \
-
-installsymlinks: $(TARGET_DOTFILES)
-	@echo "Installed symlinks"
-
-installvimvundle: $(HOMEDIR)/.vim/bundle/Vundle.vim
-
-installvimplugins: $(HOMEDIR)/.vim/.pluginsinstalled
-
-installgtktheme: $(HOMEDIR)/.themes/.themesinstalled
-
-installicons: $(HOMEDIR)/.icons/.iconsinstalled
+backup: $(BACKUP_DOTFILES)
+	@echo "Saved the user's dotfiles backup to" $(BACKUPDIR)
 
 clean:
 	@rm -rf $(TARGET_DOTFILES)
-	@echo "Cleaned user's dotfiles"
-
-backup: $(BACKUP_DOTFILES)
-	@echo "Saved user's dotfiles backup to" $(BACKUPDIR)
-
-cleanbackup:
-	@rm -rf $(dir $(BACKUPDIR))*/
-	@echo "Cleaned backups"
 
 update: clean gitupdate install
 
@@ -78,11 +60,18 @@ gitupdate:
 	@git fetch origin
 	@git reset --hard origin/master
 
-configure: configurevim
+install: installsymlinks installvimplugins installgtktheme installicons
 
-configurevim: compilevimplugins
+installsymlinks: $(TARGET_DOTFILES)
 
-compilevimplugins: $(HOMEDIR)/.vim/.pluginscompiled
+installvimplugins: \
+	$(HOMEDIR)/.vim/bundle/Vundle.vim \
+	$(HOMEDIR)/.vim/.pluginsinstalled \
+	$(HOMEDIR)/.vim/.pluginscompiled
+
+installgtktheme: $(HOMEDIR)/.themes/.themesinstalled
+
+installicons: $(HOMEDIR)/.icons/.iconsinstalled
 
 
 #########
@@ -103,7 +92,6 @@ $(BACKUP_DOTFILES):
 # Obtain Vim's Vundle
 $(HOMEDIR)/.vim/bundle/Vundle.vim:
 	@git clone https://github.com/VundleVim/Vundle.vim.git $@
-	@echo "Installed Vim Vundle"
 
 # Install Vim's plugins
 # It's assumed that successful installation of Vim's plugins
@@ -111,22 +99,18 @@ $(HOMEDIR)/.vim/bundle/Vundle.vim:
 $(HOMEDIR)/.vim/.pluginsinstalled:
 	@vim +PluginInstall +qall
 	@touch $@
-	@echo "Installed Vim plugins"
 
 # Compile Vim's plugins
 $(HOMEDIR)/.vim/.pluginscompiled:
 	@python $(HOMEDIR)/.vim/bundle/YouCompleteMe/install.py
 	@touch $@
-	@echo "Configured Vim"
 
 # Install GTK theme
 $(HOMEDIR)/.themes/.themesinstalled:
-	@svn export $(THEMES_GITADDR) $(HOMEDIR)/.themes/Paper
+	@svn export $(THEMES_REMOTEADDR) $(HOMEDIR)/.themes/Paper
 	@touch $@
-	@echo "Installed themes"
 
-# Install icons 
+# Install icons
 $(HOMEDIR)/.icons/.iconsinstalled:
-	@svn export $(ICONS_GITADDR) $(HOMEDIR)/.icons/Paper
+	@svn export $(ICONS_REMOTEADDR) $(HOMEDIR)/.icons/Paper
 	@touch $@
-	@echo "Installed icons"
