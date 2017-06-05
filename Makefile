@@ -32,7 +32,6 @@ BACKUP_DOTFILES		:= $(addprefix $(BACKUPDIR)/, $(DOTFILELIST))
 TARGET_DOTFILES		:= $(addprefix $(HOMEDIR)/, $(DOTFILELIST))
 
 ICONS_REMOTEADDR	:= https://github.com/snwh/paper-icon-theme/trunk/Paper
-THEMES_REMOTEADDR	:= https://github.com/snwh/paper-gtk-theme/trunk/Paper
 
 
 ###########
@@ -41,7 +40,7 @@ THEMES_REMOTEADDR	:= https://github.com/snwh/paper-gtk-theme/trunk/Paper
 
 .PHONY: all \
 	backup clean install \
-	installsymlinks installvimplugins installgtktheme installicons \
+	installsymlinks installvimplugins installicons \
 	update gitupdate
 
 all: backup clean install
@@ -53,13 +52,11 @@ clean:
 	@rm -rf $(TARGET_DOTFILES)
 	@rmdir -p $(filter-out $(HOMEDIR)/, $(dir $(TARGET_DOTFILES))) 2> /dev/null || true
 
-install: installsymlinks installvimplugins installgtktheme installicons
+install: installsymlinks installvimplugins installicons
 
 installsymlinks: $(TARGET_DOTFILES)
 
 installvimplugins: $(VIMDIR)/bundle/Vundle.vim $(VIMDIR)/.pluginsinstalled $(VIMDIR)/.pluginscompiled
-
-installgtktheme: $(THEMESDIR)/.themesinstalled
 
 installicons: $(ICONSDIR)/.iconsinstalled
 
@@ -99,11 +96,6 @@ $(VIMDIR)/.pluginsinstalled:
 # Compile Vim's plugins
 $(VIMDIR)/.pluginscompiled:
 	@python $(VIMDIR)/bundle/YouCompleteMe/install.py
-	@touch $@
-
-# Install GTK theme
-$(THEMESDIR)/.themesinstalled:
-	@svn export $(THEMES_REMOTEADDR) $(THEMESDIR)/Paper
 	@touch $@
 
 # Install icons

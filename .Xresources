@@ -2,15 +2,11 @@
 ! Xft settings
 !!!!!!!!!!!!!!
 Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.hintstyle:  hintfull
 
 !!!!!!!!!!!!!!!!!!!!!
 ! URxvt configuration
 !!!!!!!!!!!!!!!!!!!!!
-URxvt.font: xft:DejavuSansMono:size=10
+URxvt.font: xft:mono:medium:size=10
 URxvt*scrollBar: false
 URxvt*saveLines: 65535
 
@@ -57,8 +53,7 @@ XTerm*borderWidth: 0
 XTerm*SaveLines: 65535
 XTerm*visualbell: true
 XTerm*bellIsUrgent: true
-XTerm*faceName: DejaVu Sans Mono Book
-XTerm*faceSize: 10
+XTerm*faceName: xft:mono:medium:size=10
 
 ! terminal colours
 XTerm*foreground:#839496
