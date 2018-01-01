@@ -1,0 +1,2 @@
+# changes display and resolution when plugged in dockstation
+DEVPATH=="/devices/pci0000:00/0000:00:01.0/drm/card0", ACTION=="change", RUN+="/opt/bin/display-config.sh mln"
