@@ -27,7 +27,8 @@ export PATH=$PATH:$HOME/.bin
 # Add /opt's exports
 source /opt/exports 2> /dev/null || true
 
-# Set default editor and browser
+# Set default terminal, editor and browser
+export TERMINAL=xterm
 export EDITOR=vim
 export BROWSER=chromium
 
