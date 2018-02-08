@@ -56,7 +56,7 @@ install: installsymlinks installvimplugins installicons
 
 installsymlinks: $(TARGET_DOTFILES)
 
-installvimplugins: $(VIMDIR)/bundle/Vundle.vim $(VIMDIR)/.pluginsinstalled $(VIMDIR)/.pluginscompiled
+installvimplugins: $(VIMDIR)/bundle/Vundle.vim $(VIMDIR)/.pluginsinstalled 
 
 installicons: $(ICONSDIR)/.iconsinstalled
 
@@ -91,11 +91,6 @@ $(VIMDIR)/bundle/Vundle.vim:
 # is confirmed by the dotfile created below
 $(VIMDIR)/.pluginsinstalled:
 	@vim +PluginInstall +qall
-	@touch $@
-
-# Compile Vim's plugins
-$(VIMDIR)/.pluginscompiled:
-	@python $(VIMDIR)/bundle/YouCompleteMe/install.py
 	@touch $@
 
 # Install icons
