@@ -1,5 +1,5 @@
-Add 'display-config.sh' script to set display settings on login and docking/undocking events and 'backlight.sh' to control backlight
-====================================================================================================================================
+Add scripts for docking/undocking events and brightness change
+==============================================================
 
 1. Copy 'display-config.sh' and 'backlight.sh' to /opt/bin
 
