@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dev=/sys/class/backlight/acpi_video0
+dev=/sys/class/backlight/radeon_bl0
 curr_bg=`cat $dev/brightness`
 max_bg=`cat $dev/max_brightness`
 

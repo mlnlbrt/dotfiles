@@ -10,3 +10,9 @@ Add 'display-config.sh' script to set display settings on login and docking/undo
     chmod 505 /opt/bin/backlight.sh
 
 3. Copy '99-power_management' to /etc/udev/rules.d
+
+4. Enable backlight.sh script to be executed as root without password:
+    a) Run "visudo" as root
+    b) Add the following to the end of the newly opened file and save:
+        ## Execute backlight.sh without password
+        ALL ALL = NOPASSWD:/opt/bin/backlight.sh
