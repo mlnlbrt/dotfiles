@@ -16,3 +16,7 @@ Add scripts for docking/undocking events and brightness change
     b) Add the following to the end of the newly opened file and save:
         ## Execute backlight.sh without password
         ALL ALL = NOPASSWD:/opt/bin/backlight.sh
+
+5. Disable failing systemd service for acpi_video0 backlight:
+    a) Append the following to kernel arguments:
+        acpi_backlight=vendor
