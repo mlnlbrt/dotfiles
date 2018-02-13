@@ -1,0 +1,2 @@
+all 		-fstype=cifs,guest,vers=1.0,uid=1000,gid=1000,noperm ://mln-htpc/All
+downloads	-fstype=cifs,guest,vers=1.0,uid=1000,gid=1000,noperm ://mln-htpc/Downloads
