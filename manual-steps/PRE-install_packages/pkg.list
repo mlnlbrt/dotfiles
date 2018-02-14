@@ -43,3 +43,4 @@ fakeroot
 autofs
 pkg-config
 gcc
+unzip
