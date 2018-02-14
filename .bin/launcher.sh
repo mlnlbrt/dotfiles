@@ -4,6 +4,9 @@
 TERM=i3-sensible-terminal
 
 case `basename $0` in
+    surf-priv)
+        surf -d -a "a"
+        ;;
     *)
         exit 1
 esac
