@@ -62,18 +62,39 @@ static int winsize[] = { 800, 600 };
 static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
                                     WEBKIT_FIND_OPTIONS_WRAP_AROUND;
 
-#define PROMPT_GO   "Go:"
-#define PROMPT_FIND "Find:"
 
-/* SETPROP(readprop, setprop, prompt)*/
-#define SETPROP(r, s, p) { \
+#define PROMPT_GO       "Go:"
+#define PROMPT_FIND     "Find:"
+#define PROMPT_SEARCH   "Search:"
+
+#define BOOKMARKS_FILE  ".surf/bookmarks"
+#define SETURI() { \
         .v = (const char *[]){ "/bin/sh", "-c", \
-             "prop=\"$(printf '%b' \"$(xprop -id $1 $2 " \
-             "| sed \"s/^$2(STRING) = //;s/^\\\"\\(.*\\)\\\"$/\\1/\")\" " \
-             "| dmenu -p \"$4\" -w $1)\" && xprop -id $1 -f $3 8s -set $3 \"$prop\"", \
-             "surf-setprop", winid, r, s, p, NULL \
+             "prop=\"$(touch \"$4\" && cat \"$4\" | dmenu -p \"$3\" -w $1)\" " \
+             "&& xprop -id $1 -f $2 8s -set $2 \"$prop\"", \
+             "surf-seturl", winid, "_SURF_GO", PROMPT_GO, BOOKMARKS_FILE, NULL \
         } \
 }
+#define S(x)            #x
+#define SX(x)           S(x)
+#define SEARCHURI       "https://www.google.pl/search?q="
+#define SETSEARCHURI() { \
+        .v = (const char *[]){ "/bin/sh", "-c", \
+             "query=\"$(echo \"\" | dmenu -p \"$3\" -w $1)\" " \
+             "&& prop=\"" SX(SEARCHURI) "$query\" " \
+             "&& xprop -id $1 -f $2 8s -set $2 \"$prop\"", \
+             "surf-setsearch", winid, "_SURF_GO", PROMPT_SEARCH, NULL \
+        } \
+}
+
+#define SETFIND() { \
+        .v = (const char *[]){ "/bin/sh", "-c", \
+             "prop=\"$(echo \"\" | dmenu -p \"$3\" -w $1)\" " \
+             "&& xprop -id $1 -f $2 8s -set $2 \"$prop\"", \
+             "surf-setfind", winid, "_SURF_FIND", PROMPT_FIND, NULL \
+        } \
+}
+
 
 /* DOWNLOAD(URI, referer) */
 #define DOWNLOAD(u, r) { \
@@ -129,9 +150,10 @@ static SiteSpecific certs[] = {
  */
 static Key keys[] = {
 	/* modifier              keyval          function    arg */
-	{ MODKEY,                GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO", PROMPT_GO) },
-	{ MODKEY,                GDK_KEY_f,      spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
-	{ MODKEY,                GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
+	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_g,      spawn,      SETSEARCHURI() },
+	{ MODKEY,                GDK_KEY_g,      spawn,      SETURI() },
+	{ MODKEY,                GDK_KEY_f,      spawn,      SETFIND() },
+	{ MODKEY,                GDK_KEY_slash,  spawn,      SETFIND() },
 
 	{ 0,                     GDK_KEY_Escape, stop,       { 0 } },
 	{ MODKEY,                GDK_KEY_c,      stop,       { 0 } },
