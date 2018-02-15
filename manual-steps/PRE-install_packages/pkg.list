@@ -43,3 +43,4 @@ autofs
 pkg-config
 gcc
 unzip
+ruby-rdoc
