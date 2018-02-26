@@ -47,3 +47,7 @@ ruby-rdoc
 feh
 dvdbackup
 lsdvd
+net-tools
+twolame
+libmad
+libid3tag
