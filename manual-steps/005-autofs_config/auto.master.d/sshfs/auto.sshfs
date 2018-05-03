@@ -1,0 +1,1 @@
+kindle		-fstype=fuse,rw,allow_other,IdentityFile=/home/mln/.ssh/id_rsa :sshfs\#root@192.168.10.205\:/mnt/us/documents/
