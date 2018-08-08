@@ -7,6 +7,9 @@ case `basename $0` in
     surf-priv)
         surf -d -a "a"
         ;;
+    hints)
+        $TERM -e "hints.sh $@ && read"
+        ;;
     *)
         exit 1
 esac
