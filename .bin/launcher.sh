@@ -10,6 +10,9 @@ case `basename $0` in
     hints)
         $TERM -e "hints.sh $@ && read"
         ;;
+    _mc)
+        $TERM -e mc
+        ;;
     *)
         exit 1
 esac
