@@ -32,7 +32,7 @@ ICONSDIR		:= $(addprefix $(HOMEDIR)/, .icons)
 BACKUP_DOTFILES		:= $(addprefix $(BACKUPDIR)/, $(DOTFILELIST))
 TARGET_DOTFILES		:= $(addprefix $(HOMEDIR)/, $(DOTFILELIST))
 
-ICONS_REMOTEADDR	:= https://github.com/snwh/paper-icon-theme/trunk/Paper
+ICONS_REMOTEADDR	:= https://github.com/mlnlbrt/paper-icon-theme/trunk/Paper
 
 
 ###########
