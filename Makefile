@@ -35,8 +35,8 @@ VIMDIR			:= $(addprefix $(HOMEDIR)/, .vim)
 THEMESDIR		:= $(addprefix $(HOMEDIR)/, .themes)
 ICONSDIR		:= $(addprefix $(HOMEDIR)/, .icons)
 
-BACKUP_DOTFILES		:= $(addprefix $(BACKUPDIR)/, $(DOTFILELIST))
-TARGET_DOTFILES		:= $(addprefix $(HOMEDIR)/, $(DOTFILELIST))
+BACKUP_DOTFILES	:= $(addprefix $(BACKUPDIR)/, $(DOTFILELIST))
+TARGET_DOTFILES	:= $(addprefix $(HOMEDIR)/, $(DOTFILELIST))
 
 
 ###########
@@ -61,7 +61,7 @@ install: installsymlinks installvimplugins installicons
 
 installsymlinks: $(TARGET_DOTFILES)
 
-installvimplugins: $(VIMDIR)/bundle/Vundle.vim $(VIMDIR)/.pluginsinstalled 
+installvimplugins: $(VIMDIR)/bundle/Vundle.vim $(VIMDIR)/.pluginsinstalled
 
 installicons: $(ICONSDIR)/.iconsinstalled
 
