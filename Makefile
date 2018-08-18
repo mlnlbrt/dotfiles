@@ -1,3 +1,7 @@
+##########
+# CONSTS #
+##########
+
 DOTFILELIST :=
 DOTFILELIST += .bin
 DOTFILELIST += .i3 .i3status.conf
@@ -13,6 +17,8 @@ DOTFILELIST += .config/gtk-3.0/settings.ini
 DOTFILELIST += .config/mpv/mpv.conf
 DOTFILELIST += .surf
 DOTFILELIST += .ssh/config
+
+ICONS_REMOTEADDR := https://github.com/mlnlbrt/paper-icon-theme/trunk/Paper
 
 
 #############
@@ -31,8 +37,6 @@ ICONSDIR		:= $(addprefix $(HOMEDIR)/, .icons)
 
 BACKUP_DOTFILES		:= $(addprefix $(BACKUPDIR)/, $(DOTFILELIST))
 TARGET_DOTFILES		:= $(addprefix $(HOMEDIR)/, $(DOTFILELIST))
-
-ICONS_REMOTEADDR	:= https://github.com/mlnlbrt/paper-icon-theme/trunk/Paper
 
 
 ###########
