@@ -7,7 +7,7 @@ case `basename $0` in
     surf-priv)
         surf -d -a "a"
         ;;
-    hints)
+    _hints)
         $TERM -e "hints.sh $@ && read"
         ;;
     _mc)
