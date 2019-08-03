@@ -66,3 +66,5 @@ calibre
 icu
 smartmontools
 cdrtools
+exfat-utils
+dhclient
