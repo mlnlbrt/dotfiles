@@ -18,7 +18,6 @@ automake
 make
 vim
 acpi
-xorg-xdm
 xorg-xsetroot
 libx264
 terminus-font
