@@ -29,7 +29,6 @@ HOMEDIR			:= $(shell echo ~)
 BACKUPDIR		:= $(PWD)/.backup/$(BACKUPNAME)
 PACKAGEDIR		:= $(PWD)
 
-VIMDIR			:= $(addprefix $(HOMEDIR)/, .vim)
 THEMESDIR		:= $(addprefix $(HOMEDIR)/, .themes)
 ICONSDIR		:= $(addprefix $(HOMEDIR)/, .icons)
 
@@ -43,7 +42,7 @@ TARGET_DOTFILES	:= $(addprefix $(HOMEDIR)/, $(DOTFILELIST))
 
 .PHONY: all \
 	backup clean install \
-	installsymlinks installvimplugins installicons \
+	installsymlinks installicons \
 	update gitupdate
 
 all: backup clean install
@@ -55,11 +54,9 @@ clean:
 	@rm -rf $(TARGET_DOTFILES)
 	@rmdir -p $(filter-out $(HOMEDIR)/, $(dir $(TARGET_DOTFILES))) 2> /dev/null || true
 
-install: installsymlinks installvimplugins installicons
+install: installsymlinks installicons
 
 installsymlinks: $(TARGET_DOTFILES)
-
-installvimplugins: $(VIMDIR)/bundle/Vundle.vim $(VIMDIR)/.pluginsinstalled
 
 installicons: $(ICONSDIR)/.iconsinstalled
 
@@ -84,17 +81,6 @@ $(BACKUP_DOTFILES):
 $(TARGET_DOTFILES):
 	@mkdir -p $(dir $@)
 	@ln -s $(addprefix $(PACKAGEDIR)/, $(subst $(HOMEDIR)/,,$@)) $@
-
-# Get Vim's Vundle
-$(VIMDIR)/bundle/Vundle.vim:
-	@git clone https://github.com/VundleVim/Vundle.vim.git $@
-
-# Install Vim's plugins
-# It's assumed that the successful installation of Vim's plugins
-# is confirmed by the dotfile created below
-$(VIMDIR)/.pluginsinstalled:
-	@vim +PluginInstall +qall
-	@touch $@
 
 # Install icons
 $(ICONSDIR)/.iconsinstalled:

@@ -2,19 +2,6 @@ set nocompatible
 set backspace=indent,eol,start
 filetype off
 
-" Vundle plugins
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'wesleyche/Trinity'
-Plugin 'bling/vim-bufferline'
-Plugin 'rking/ag.vim'
-
-call vundle#end()
-filetype plugin indent on
-
 " various tweaks
 set autoindent
 set number
@@ -53,14 +40,6 @@ function TabToggle()
     endif
 endfunction
 nmap <F5> mz:execute TabToggle()<CR>'z
-
-" Open and close the Taglist separately
-nmap <F9> :TrinityToggleTagList<CR>
-" Open and close the NERD Tree separately
-nmap <F10> :TrinityToggleNERDTree<CR>
-
-" Enable indentation highlighting
-nmap <F6> <Leader>ig
 
 " Set CWD as window title
 set title
