@@ -30,12 +30,6 @@ new_float normal 4
 # Autostart
 ###########
 
-# Manage multi-monitor
-exec_always --no-startup-id /opt/bin/display-config.sh $USER
-
-# Automatically turn-off display power saving when running fullscreen applications
-exec_always --no-startup-id disable-dpms-on-fullscreen-window
-
 # Set background color
 exec_always --no-startup-id xsetroot -solid $bgcolor
 
@@ -156,10 +150,6 @@ bindsym Print exec --no-startup-id scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
-
-# Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo /opt/bin/backlight.sh up
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo /opt/bin/backlight.sh down
 
 #######
 # Theme
