@@ -1,0 +1,25 @@
+Rip Audio CDs
+
+Create a new directory for your rip, cd into it and rip all tracks:
+    $ cdparanoia -B
+
+Encode each track with flac and remove source WAVs:
+    $ for i in *; do flac -8 "$i"; done && rm *.wav
+
+Rename files:
+    $ for i in *.flac; do name=${i%%.*}; mv "$i" ${name##*track}.flac; done
+
+Tag track number then artist, album and year:
+    $ for i in *.flac; do taffy "$i" -n "$(basename "$i" .flac)"; done
+
+    $ ARTIST="artist"; ALBUM="album"; YEAR=1900;
+    $ taffy -r "$ARTIST" -l "$ALBUM" -y "$YEAR" *.flac
+
+Tag title of each file manually:
+    $ TRACK_NUMBER=01; TRACK_TITLE=""; taffy -t "$TRACK_TITLE" $TRACK_NUMBER.flac
+
+Rename files using tags:
+    $ for i in *.flac; do taffy --rename-fs "%N. %T" "$i"; done
+
+Optionally, convert to mp3:
+    $ for i in *.flac; do ffmpeg -i "$i" -qscale:a 0 "$(basename "$i" .flac).mp3"; done

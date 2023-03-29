@@ -1,0 +1,2 @@
+Backup src directory in dst directory (no deletion performed)
+    $ rsync -a <SRC_DIR> <DST_DIR>

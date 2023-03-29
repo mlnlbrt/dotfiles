@@ -1,0 +1,13 @@
+Add SRT subtitles to MKV files
+    $ for INTERMEDIATE_MKV_FILE in _*.mkv; do \
+        ffmpeg \
+            -i "$INTERMEDIATE_MKV_FILE" \
+            -sub_charenc 'UTF-8' -f srt \
+            -i "$(basename "$INTERMEDIATE_MKV_FILE" .mkv).srt" \
+            -map 0:0 \
+            -map 0:1 \
+            -map 1:0 \
+            -c:v copy \
+            -c:a copy \
+            -c:s srt \
+            -y "${INTERMEDIATE_MKV_FILE#?}"; done

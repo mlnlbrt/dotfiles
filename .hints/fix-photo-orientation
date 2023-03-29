@@ -1,0 +1,11 @@
+Fix photo orientation in photos taken by dumb cameras
+    $ exiftran -ia *
+
+Manually rotate 90 DEG CW:
+    $ exiftran -i9 *
+
+Manually rotate 180 DEG CW:
+    $ exiftran -i1 *
+
+Manually rotate 270 DEG CW:
+    $ exiftran -i2 *

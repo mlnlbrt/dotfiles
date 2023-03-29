@@ -4,6 +4,7 @@
 
 DOTFILELIST :=
 DOTFILELIST += .bin
+DOTFILELIST += .hints
 DOTFILELIST += .i3 .i3status.conf
 DOTFILELIST += .vimrc .vim
 DOTFILELIST += .local/share/applications/mimeapps.list

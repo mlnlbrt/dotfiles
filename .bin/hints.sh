@@ -1,12 +1,12 @@
 #!/bin/bash
 
-HINTS_DIR=${0%/*}/hints-data
+HINTS_DIR=~/.hints
 
 declare -A HINTS_MAP
 
 fetch_hints() {
     for hint_file in $HINTS_DIR/*; do
-        HINTS_MAP[${hint_file##*/}]=$(cat $hint_file)
+        HINTS_MAP[${hint_file##*/}]="$(cat $hint_file)"
     done
 }
 
@@ -28,7 +28,8 @@ fetch_hints;
 
 if [ "$#" -eq 1 ] && [ -n "${HINTS_MAP[$1]}" ]; then
     printf "$1: "
-    printf "${HINTS_MAP[$1]}\n"
+    echo "${HINTS_MAP[$1]}"
+    printf "\n"
 else
     print_usage;
     print_cmds;
