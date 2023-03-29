@@ -1,1 +1,0 @@
-/tmp/mount/sshfs	/etc/autofs/auto.master.d/sshfs/auto.sshfs --timeout=60 --ghost

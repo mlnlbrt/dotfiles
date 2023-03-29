@@ -1,1 +1,0 @@
-/tmp/mount/cifs       /etc/autofs/auto.master.d/smb/auto.samba --timeout=60 --ghost
