@@ -15,7 +15,6 @@ DOTFILELIST += .pulse/client.conf .pulse/daemon.conf .pulse/default.pa
 DOTFILELIST += .config/dunst/dunstrc
 DOTFILELIST += .config/gtk-3.0/settings.ini
 DOTFILELIST += .config/mpv/mpv.conf
-DOTFILELIST += .surf
 DOTFILELIST += .ssh/config
 
 ICONS_REMOTEADDR := https://github.com/mlnlbrt/paper-icon-theme/trunk/Paper
