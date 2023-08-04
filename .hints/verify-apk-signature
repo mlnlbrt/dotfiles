@@ -1,0 +1,11 @@
+Verify APK Signature
+
+Check if APK is signed properly:
+    $ APK_FILE=
+    $ jarsigner -verify "$APK_FILE" | grep "jar verified"
+
+Get Owner, Issuer and SHA1 signature:
+    $ APK_FILE=
+    $ keytool -list -printcert -jarfile "$APK_FILE" | grep Owner
+    $ keytool -list -printcert -jarfile "$APK_FILE" | grep Issuer
+    $ keytool -list -printcert -jarfile "$APK_FILE" | grep SHA1

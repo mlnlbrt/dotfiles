@@ -1,0 +1,14 @@
+Extract Closed Captions from ripped VOBs
+    $ for TITLE_DIR in */; do \
+        ffmpeg \
+            -fflags +igndts \
+            -i concat:"$(ls -1 "$TITLE_DIR"VIDEO_TS/*VOB \
+                | sort | awk '{ ORS="|"; print; }' | sed 's/.$//')" \
+            -c copy \
+            -f mpeg \
+            pipe:1 \
+                | ffmpeg \
+                -f lavfi \
+                -i "movie=pipe\\\:0[out+subcc]" \
+                -map s \
+                -y "_${TITLE_DIR%?}.srt" ; done

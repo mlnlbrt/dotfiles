@@ -1,0 +1,6 @@
+Extract audio tracks from BIN/CUE and encode to flac
+    $ CD_NAME="filename"
+    $ bchunk -v -w "$CD_NAME".bin "$CD_NAME".cue track
+    $ rm *iso
+    $ flac -8 *wav
+    $ rm *wav

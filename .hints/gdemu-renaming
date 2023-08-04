@@ -1,0 +1,10 @@
+Rename directories for gdemu
+
+From gdemu:
+    $ cnt=0; for i in */; do cnt=$((cnt+1)); sudo mv "$i" "$(printf '%02d' $cnt)"; done
+
+To gdemu:
+    $ for i in */*.txt; do name=$(cat $i); sudo mv "$(dirname "$i")" "$name"; done
+
+Create name.txt:
+    $ for i in */; do echo "${i:0:-1}" > "$i"name.txt; done

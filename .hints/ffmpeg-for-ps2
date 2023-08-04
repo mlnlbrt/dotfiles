@@ -1,0 +1,8 @@
+Convert videos to be played on a PS2 using SMS
+
+Convert a video:
+    $ FILENAME=
+    $ ffmpeg -i "$FILENAME" -map 0:v:0 -map 0:a:0 -c:v mpeg4 -vtag xvid -b:v 3000k -c:a libmp3lame -b:a 224k "${FILENAME:0:-3}"avi
+
+For 24 fps videos to be converted to 25 fps:
+    $ ffmpeg -i "$FILENAME" -filter_complex "[0:v]setpts=24/25*PTS[v];[0:a]atempo=25/24[a]" -map "[v]" -map "[a]" -c:v mpeg4 -vtag xvid -b:v 3000k -c:a libmp3lame -b:a 224k -r 25 "${FILENAME:0:-3}"avi
