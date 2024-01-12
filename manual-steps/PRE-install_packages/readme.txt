@@ -2,7 +2,7 @@ Install packages
 ----------------
 
 1. Install packages from repository by executing the following as root:
-    pacman -S - < pkg.list
+    pacman -S --needed - < pkg.list
 
 2. Install packages from AUR:
     a) Open "aur.pkg.list" file
