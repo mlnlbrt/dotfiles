@@ -4,8 +4,17 @@
 TERM=xterm
 
 case `basename $0` in
+    _mc)
+        $TERM -e mc
+        ;;
     _hints)
-        $TERM -e "hints.sh $@ && read"
+        hints.sh "$@"
+        ;;
+    _base64decode)
+        echo "$@" | base64 -d -
+        ;;
+    _xclip)
+        xclip -o | xclip -selection clipboard
         ;;
     *)
         exit 1
