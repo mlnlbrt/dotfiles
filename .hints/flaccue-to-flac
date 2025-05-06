@@ -1,3 +1,10 @@
 Extract audio tracks from FLAC/CUE
-    $ CD_NAME="filename"
-    $ shnsplit -f "$CD_NAME".cue -o flac "$CD_NAME".flac
+    $ for i in */; do \
+        pushd "$i"; \
+            for i in *.cue; do shnsplit -f "$i" -o flac "$(basename "$i" .cue)".flac; done \
+            && rm *-track00.flac; \
+        popd; \
+    done
+
+Rename folder.jpg to cover.jpg
+    $ for i in */Front.jpg; do mv "$i" "$(dirname "$i")"/cover.jpg; done
