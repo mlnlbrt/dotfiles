@@ -19,6 +19,26 @@ case `basename $0` in
     _dirty)
         cat /proc/meminfo | grep irty
         ;;
+    _mountios-vlc)
+        mkdir -p /tmp/ios-vlc \
+        && ifuse --documents org.videolan.vlc-ios /tmp/ios-vlc
+        ;;
+    _umountios-vlc)
+        fusermount -u /tmp/ios-vlc
+        ;;
+    _mountios-chunky)
+        mkdir -p /tmp/ios-chunky \
+        && ifuse --documents com.mike-ferenduros.Chunky-Comic-Reader /tmp/ios-chunky
+        ;;
+    _umountios-chunky)
+        fusermount -u /tmp/ios-chunky
+        ;;
+    _mountios-dcim)
+        mkdir -p /tmp/ios-dcim && ifuse /tmp/ios-dcim
+        ;;
+    _umountios-dcim)
+        fusermount -u /tmp/ios-dcim
+        ;;
     *)
         exit 1
 esac
