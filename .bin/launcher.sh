@@ -39,6 +39,17 @@ case `basename $0` in
     _umountios-dcim)
         fusermount -u /tmp/ios-dcim
         ;;
+    _startsmb)
+        sudo systemctl start docker && sudo docker run --name="docker-smb" \
+        -d --rm --entrypoint "" \
+        -p 445:445 \
+        -e "USER=samba" -e "PASS=secret" \
+        -v `pwd`:/storage dockurr/samba \
+        bash -c "echo vfs objects = fruit streams_xattr >> /etc/samba/smb.default && samba.sh"
+        ;;
+    _stopsmb)
+        sudo docker stop docker-smb
+        ;;
     *)
         exit 1
 esac
