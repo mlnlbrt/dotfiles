@@ -1,0 +1,20 @@
+Convert FLAC to ALAC
+    $ shopt -s globstar; for i in **/*.flac; do \
+        DIRNAME=$(dirname "$i"); \
+        FILENAME=$(basename "$i" .flac); \
+        TITLE=$(metaflac --show-tag=title "$i" | cut -d '=' -f 2); \
+        ARTIST=$(metaflac --show-tag=artist "$i" | cut -d '=' -f 2); \
+        ALBUM=$(metaflac --show-tag=album "$i" | cut -d '=' -f 2); \
+        DATE=$(metaflac --show-tag=date "$i" | cut -d '=' -f 2); \
+        TRACK=$(metaflac --show-tag=tracknumber "$i" | cut -d '=' -f 2); \
+        GENRE=$(metaflac --show-tag=genre "$i" | cut -d '=' -f 2); \
+        ffmpeg -i "$i" -vn -sample_fmt s16 -ar 44100 -y "$DIRNAME/$FILENAME".wav; \
+        qaac --alac --title "$TITLE" --artist "$ARTIST" --album "$ALBUM" \
+            --date "$DATE" --track "$TRACK" --genre "$GENRE" \
+            --artwork "$DIRNAME"/cover.jpg \
+            "$DIRNAME/$FILENAME".wav -o "$DIRNAME/$FILENAME".m4a; \
+        rm "$DIRNAME/$FILENAME".wav; \
+        done
+
+Remove leftovers
+    $ shopt -s globstar; rm **/*.flac
