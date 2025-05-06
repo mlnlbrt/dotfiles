@@ -15,6 +15,7 @@ DOTFILELIST += .icons .themes .gtkrc-2.0
 DOTFILELIST += .pulse/client.conf .pulse/daemon.conf .pulse/default.pa
 DOTFILELIST += .config/gtk-3.0/settings.ini
 DOTFILELIST += .config/mpv/mpv.conf
+DOTFILELIST += .config/chromium-flags.conf
 DOTFILELIST += .ssh/config
 
 ICONS_REMOTEADDR := https://github.com/mlnlbrt/paper-icon-theme/trunk/Paper
