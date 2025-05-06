@@ -12,11 +12,15 @@ Rename files:
 Tag track number then artist, album and year:
     $ for i in *.flac; do taffy "$i" -n "$(basename "$i" .flac)"; done
 
-    $ ARTIST="artist"; ALBUM="album"; YEAR=1900;
-    $ taffy -r "$ARTIST" -l "$ALBUM" -y "$YEAR" *.flac
+    $ ARTIST=""; ALBUM=""; YEAR=1900; \
+        taffy -r "$ARTIST" -l "$ALBUM" -y "$YEAR" *.flac
 
 Tag title of each file manually:
-    $ TRACK_NUMBER=01; TRACK_TITLE=""; taffy -t "$TRACK_TITLE" $TRACK_NUMBER.flac
+    $ TRACK_NUMBER=0; TRACK_TITLES=("" "")
+    $ for track_title in "${TRACK_TITLES[@]}"; do \
+        ((TRACK_NUMBER++)); \
+        track_number=$(printf %02d $TRACK_NUMBER); \
+        taffy -t "$track_title" "$track_number".flac; done
 
 Rename files using tags:
     $ for i in *.flac; do taffy --rename-fs "%N. %T" "$i"; done
