@@ -1,0 +1,5 @@
+Convert videos to be played on a iPad 4
+
+Convert a video:
+    $ FILENAME=""; \
+        ffmpeg -i "$FILENAME" -vf "scale=iw/2:ih/2" -map 0:v:0 -map 0:a:0 -map 0:s:0 -c:v libx264 -crf 22 -tune animation -c:a copy -c:s copy -y "${FILENAME:0:-3}"x264.mkv
