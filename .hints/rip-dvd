@@ -1,60 +1,51 @@
-Rip movies/tv shows from DVDs
-
-Create a new directory for your rip, cd into it and get informations about DVD:
-    $ dvdbackup --input=/dev/sr0 -I
-    $ lsdvd /dev/sr0
-
-For DVD with a movie, rip its main feature:
-    $ dvdbackup --input=/dev/sr0 -pF > dvdbackup.log 2>&1
-    $ rm */VIDEO_TS/*_0.VOB
-
-For DVD with a tv show, rip its titles into separate directories:
-    $ TITLE=
-    $ SEASON=
-    $ FIRST_EP_ON_DVD=
-    $ NO_EP_ON_DVD=
-    $ TITLE_OFFSET=
-    $ for i in $(seq $NO_EP_ON_DVD); do \
-        CURRENT_EP=$(($i+$FIRST_EP_ON_DVD-1)); \
-        TITLE_NAME="$TITLE"; \
-        TITLE_NAME=$TITLE_NAME".S$(printf "%02d" $SEASON)"; \
-        TITLE_NAME=$TITLE_NAME"E$(printf "%02d" $CURRENT_EP)"; \
-        dvdbackup \
-            --input=/dev/sr0 \
-            --title=$(($i+$TITLE_OFFSET)) \
-            --name=$TITLE_NAME \
-            > $TITLE_NAME.dvdbackup.log 2>&1; done
-
-Set video codec settings for movie:
-    $ VIDEO_CFG="copy"
-
-Set video codec settings for tv shows:
-    $ VIDEO_CFG="libx264 -crf 22 -tune film"
+For DVD with a movie, rip its main feature and write down stream info:
+    $ DEVICE="/dev/sr0"; \
+        AUD_LANGUAGE="en"; \
+        SUB_LANGUAGE="pl"; \
+        LSDVD_JSON=$(lsdvd -Oy $DEVICE \
+            | grep -v libdvdread \
+            | sed -e 's/^lsdvd = //' -e "s/'/\"/g" \
+            | tr -d '\n'| sed -e 's/,\s*}/}/g' -e 's/,\s*]/]/g'); \
+        LSDVD_TITLE=$(echo $LSDVD_JSON | jq -r .title); \
+        LSDVD_TRACK=$(echo $LSDVD_JSON | jq -r .longest_track); \
+        LSDVD_AUD_STRING=$(lsdvd -t $LSDVD_TRACK -a $DEVICE | grep "Language: $AUD_LANGUAGE"); \
+        LSDVD_AUD_STREAM=$(echo ${LSDVD_AUD_STRING##*: }); \
+        LSDVD_SUB_STRING=$(lsdvd -t $LSDVD_TRACK -s $DEVICE | grep "Language: $SUB_LANGUAGE"); \
+        LSDVD_SUB_STREAM="$(echo ${LSDVD_SUB_STRING##*: })"; \
+        echo "TITLE: "$LSDVD_TITLE; \
+        echo "TRACK: "$LSDVD_TRACK; \
+        echo "AUD: "$LSDVD_AUD_STREAM; \
+        echo "SUB: "$LSDVD_SUB_STREAM; \
+        mkdir -p "$LSDVD_TITLE"; \
+        pushd "$LSDVD_TITLE"; \
+        echo ${LSDVD_AUD_STREAM:0:4} > aud_stream; \
+        echo ${LSDVD_SUB_STREAM:0:4} > sub_stream; \
+        dvdbackup --input=$DEVICE -pF && rm */VIDEO_TS/*_0.VOB; \
+        popd
 
 Convert VODs to MKV:
-    $ CODEC_CFG="-c:v $VIDEO_CFG -c:a copy -c:s dvdsub"
-    $ MAP_CFG="-map 0:v -map 0:a -map 0:s"
-    $ for TITLE_DIR in */; do \
-        ffmpeg \
-            -ifo_palette "$TITLE_DIR"VIDEO_TS/*.IFO \
-            -fflags +genpts+igndts \
-            -analyzeduration 1000M -probesize 1000M \
-            -i concat:"$(ls -1 "$TITLE_DIR"VIDEO_TS/*VOB \
-                | sort | awk '{ ORS="|"; print; }' | sed 's/.$//')" \
-            $CODEC_CFG \
-            $MAP_CFG \
-            -y "_${TITLE_DIR%?}.mkv" \
-            > "_${TITLE_DIR%?}".ffmpeg.log 2>&1 ; done
-
-Keep the only audio and subtitles you want:
-    $ AUDIO_STREAM=a; SUBTITLE_STREAM=s;
-    $ for INTERMEDIATE_MKV_FILE in _*.mkv; do \
-        ffmpeg \
-            -i "$INTERMEDIATE_MKV_FILE" \
-            -c:v copy \
-            -c:a copy \
-            -c:s copy \
-            -map 0:v \
-            -map 0:$AUDIO_STREAM \
-            -map 0:$SUBTITLE_STREAM \
-            -y "${INTERMEDIATE_MKV_FILE#?}"; done
+    $ FFMPEG_PARAMS="-fflags +genpts+igndts -analyzeduration 1000M -probesize 1000M"; \
+        CODEC_CFG="-c:v copy -c:a copy -c:s dvdsub"; \
+        for ROOT_DIR in */; do \
+            pushd $ROOT_DIR; \
+                for TITLE_DIR in */; do \
+                    VOB_LIST=$(ls -1 "$TITLE_DIR"VIDEO_TS/*VOB \
+                        | sort | awk '{ ORS="|"; print; }' | sed 's/.$//');
+                    FFMPEG_AUD=$(ffmpeg $FFMPEG_PARAMS -i concat:"$VOB_LIST" 2>&1 \
+                        | grep $(cat aud_stream)); \
+                    FFMPEG_AUD=${FFMPEG_AUD#*Stream #0:}; \
+                    FFMPEG_AUD=${FFMPEG_AUD%[*}; \
+                    FFMPEG_SUB=$(ffmpeg $FFMPEG_PARAMS -i concat:"$VOB_LIST" 2>&1 \
+                        | grep $(cat sub_stream)); \
+                    FFMPEG_SUB=${FFMPEG_SUB#*Stream #0:}; \
+                    FFMPEG_SUB=${FFMPEG_SUB%[*}; \
+                    MAP_CFG="-map 0:v -map 0:$FFMPEG_AUD -map 0:$FFMPEG_SUB"; \
+                    ffmpeg $FFMPEG_PARAMS \
+                        -ifo_palette "$TITLE_DIR"VIDEO_TS/*.IFO \
+                        -i concat:"$VOB_LIST" \
+                        $CODEC_CFG \
+                        $MAP_CFG \
+                        -y ../"${TITLE_DIR%?}.mkv" ;\
+                done; \
+            popd; \
+        done
