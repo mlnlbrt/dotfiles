@@ -16,6 +16,9 @@ case `basename $0` in
     _xclip)
         xclip -o | xclip -selection clipboard
         ;;
+    _dirty)
+        cat /proc/meminfo | grep irty
+        ;;
     *)
         exit 1
 esac
