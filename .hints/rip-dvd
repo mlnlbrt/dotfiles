@@ -8,7 +8,7 @@ For DVD with a movie, rip its main feature and write down stream info:
             | tr -d '\n'| sed -e 's/,\s*}/}/g' -e 's/,\s*]/]/g'); \
         LSDVD_TITLE=$(echo $LSDVD_JSON | jq -r .title); \
         LSDVD_TRACK=$(echo $LSDVD_JSON | jq -r .longest_track); \
-        LSDVD_AUD_STRING=$(lsdvd -t $LSDVD_TRACK -a $DEVICE | grep "Language: $AUD_LANGUAGE"); \
+        LSDVD_AUD_STRING=$(lsdvd -t $LSDVD_TRACK -a $DEVICE | grep "Language: $AUD_LANGUAGE" | grep -vi "comments"); \
         LSDVD_AUD_STREAM=$(echo ${LSDVD_AUD_STRING##*: }); \
         LSDVD_SUB_STRING=$(lsdvd -t $LSDVD_TRACK -s $DEVICE | grep "Language: $SUB_LANGUAGE"); \
         LSDVD_SUB_STREAM="$(echo ${LSDVD_SUB_STRING##*: })"; \
