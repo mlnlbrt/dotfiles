@@ -39,6 +39,9 @@ case `basename $0` in
     _umountios-dcim)
         fusermount -u /tmp/ios-dcim
         ;;
+    _starthttp)
+        python -m http.server 8000
+        ;;
     _startsmb)
         sudo systemctl start docker && sudo docker run --name="docker-smb" \
         -d --rm --entrypoint "" \
