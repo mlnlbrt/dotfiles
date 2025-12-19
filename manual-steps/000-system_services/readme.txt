@@ -8,3 +8,6 @@ NOTE: Run all the commands as root
 
 2. Enable xdm Display Manager
     systemctl enable xdm.service
+
+3. Enable timesync
+    systemctl enable systemd-timesyncd.service
