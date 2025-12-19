@@ -1,9 +1,9 @@
 Rename directories for gdemu
 
-From gdemu:
+To gdemu (from human readable directory names):
     $ cnt=0; for i in */; do cnt=$((cnt+1)); sudo mv "$i" "$(printf '%02d' $cnt)"; done
 
-To gdemu:
+From gdemu (from gdemu directory names):
     $ for i in */*.txt; do name=$(cat $i); sudo mv "$(dirname "$i")" "$name"; done
 
 Create name.txt:
